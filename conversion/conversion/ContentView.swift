@@ -25,20 +25,19 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            Form {
                 Section (header: Text("Convert")){
                     TextField("Value to Convert", text: $inputValue)
                         .multilineTextAlignment(.center)
                         .keyboardType(.decimalPad)
                 }
-                Section (header: Text("Input Unit")) {
+                Section (header: Text("This")) {
                     Picker("Select a Unit", selection: $inputUnit) {
                         ForEach(0..<units.count) {
                             Text("\(self.units[$0].symbol)")
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-//                    Text("\(inputUnit)")
                 }
                 
                 Section (header: Text("Into").padding(.top)){
@@ -49,14 +48,13 @@ struct ContentView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-//                    Text("\(outputUnit)")
                 }
                 Section {
-                    Text("\(convertedValue)")
+                    Text("\(convertedValue, specifier: "%.2f")")
                         .padding(.top)
                 }
             }
-            .navigationTitle("Converrrrrsion")
+            .navigationTitle("This 2 That")
         }
     }
 }
